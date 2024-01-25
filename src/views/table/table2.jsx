@@ -1,5 +1,5 @@
 function Subs() {
-  return <div>组件</div>;
+  return <div>table2</div>;
 }
 
 export default Subs;
