@@ -1,0 +1,47 @@
+.App {
+  width: 100%;
+  height: 100%;
+}
+.silder {
+  height: 100%;
+  background: #001529;
+  overflow: auto;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: transparent transparent; /* For Firefox */
+  overflow: auto; /* For other browsers */
+}
+/* 针对Webkit浏览器（如Chrome和Safari） */
+::-webkit-scrollbar {
+  width: 8px; /* 滚动条宽度 */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent; /* 滚动条滑块颜色 */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent; /* 滚动条轨道颜色 */
+}
+.main {
+  padding: 0 10px;
+  height: 100%;
+  flex: 1;
+  background: #141b2d;
+  box-sizing: border-box;
+  overflow: auto;
+}
+.content {
+  padding: 32px;
+  color: #fff;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
