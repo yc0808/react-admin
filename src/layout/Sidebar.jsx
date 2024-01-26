@@ -1,31 +1,38 @@
-import React, { useState } from 'react';
-import { AppstoreOutlined, SettingOutlined, MenuFoldOutlined, MenuUnfoldOutlined, HomeOutlined } from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, Menu, Flex } from 'antd';
 import userSrc from '../assets/user.png';
-import { useNavigate } from 'react-router-dom';
-
-function getItem(label, key, icon, children, type) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  };
-}
-
-const items = [getItem('Dashboard', '/', <HomeOutlined />), getItem('Table', '/table', null, [getItem('table1', '/table1'), getItem('table2', '/table2')]), getItem('Page', '/page', <AppstoreOutlined />, [getItem('page1', '/page1'), getItem('page2', '/page2'), getItem('Submenu', '/submenu', null, [getItem('smenu1', '/smenu1'), getItem('smenu2', '/smenu2')])]), getItem('Chart', '/chart', <SettingOutlined />, [getItem('Bar Chart', '/bar'), getItem('Pie Chart', '/pie'), getItem('Line Chart', '/line')])];
+import { useNavigate, useLocation } from 'react-router-dom';
+import menuData from './data';
 
 const Silderbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
+  const [openKeys, setOpenKeys] = useState(['']); //当前展开的SubMenu菜单项key 数组
+  const [selectKeys, setSelectKeys] = useState(['']); //当前选中的菜单项 key 数组
+
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
 
-  const handleMenuOnClick = ({ item, key, keyPath, domEvent }) => {
-    const path = keyPath.reverse();
-    navigate(path.join(''));
+  useEffect(() => {
+    const { pathname } = location;
+    const pathArr = pathname.split('/');
+    setOpenKeys(pathArr);
+    setSelectKeys(pathArr.pop());
+  }, [location]);
+
+  const onOpenChange = (openKeys) => {
+    // console.log(openKeys);
+    setOpenKeys(openKeys);
+  };
+
+  const handleMenuOnClick = (e) => {
+    // console.log(e);
+    setSelectKeys(e.key);
+    const path = e.keyPath.reverse();
+    navigate(`/${path.join('/')}`);
   };
   return (
     <div
@@ -60,7 +67,7 @@ const Silderbar = () => {
           </Flex>
         </div>
       )}
-      <Menu mode="inline" theme="dark" inlineCollapsed={collapsed} items={items} onClick={handleMenuOnClick} />
+      <Menu mode="inline" theme="dark" inlineCollapsed={collapsed} items={menuData} openKeys={openKeys} selectedKeys={selectKeys} onClick={handleMenuOnClick} onOpenChange={onOpenChange} />
     </div>
   );
 };

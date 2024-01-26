@@ -23,16 +23,16 @@
   background-color: transparent; /* 滚动条轨道颜色 */
 }
 .main {
-  padding: 0 10px;
   height: 100%;
   flex: 1;
-  background: #141b2d;
   box-sizing: border-box;
   overflow: auto;
 }
+.topbar {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
 .content {
   padding: 32px;
-  color: #fff;
 }
 .flex {
   display: flex;
