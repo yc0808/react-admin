@@ -11,6 +11,7 @@ import Smenu2 from "../views/page/Submenu/menu2";
 import Bar from "../views/chart/bar";
 import Pie from "../views/chart/pie";
 import Line from "../views/chart/line";
+import NotFound from "../views/notFound";
 
 
 export const router = createBrowserRouter([
@@ -80,4 +81,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '*',
+    element: <NotFound />
+  }
 ])
