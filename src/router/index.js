@@ -12,6 +12,7 @@ import Bar from "../views/chart/bar";
 import Pie from "../views/chart/pie";
 import Line from "../views/chart/line";
 import NotFound from "../views/notFound";
+import Mobx from "../views/mobx";
 
 
 export const router = createBrowserRouter([
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />
+      },
+      {
+        path: '/mobx',
+        element: <Mobx />
       },
       {
         path: "/table",

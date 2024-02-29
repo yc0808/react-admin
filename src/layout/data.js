@@ -12,6 +12,7 @@ const getItem = (label, key, icon, children, type) => {
 
 const items = [
   getItem('Dashboard', '', <HomeOutlined />),
+  getItem('Mobx', 'mobx', <HomeOutlined />),
   getItem('Table', 'table', null, [
     getItem('table1', 'table1'),
     getItem('table2', 'table2')
